@@ -22,18 +22,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+LIBS += -L/usr/local/lib/ -lpoppler-qt5
+
 CONFIG += c++11
 
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
     filepdfdir.cpp \
-    filepdflist.cpp
+    filepdflist.cpp \
+    filepdfimagebuffer.cpp \
+    filepdfthumbitem.cpp \
+    filepdfconfig.cpp
 
 HEADERS += \
         mainwindow.h \
     filepdfdir.h \
-    filepdflist.h
+    filepdflist.h \
+    filepdfimagebuffer.h \
+    filepdfthumbitem.h \
+    filepdfconfig.h
 
 FORMS +=
 

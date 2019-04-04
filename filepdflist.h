@@ -10,6 +10,7 @@ class FilePDFList
 {
 public:
     FilePDFList();
+    QList<QString> &get_pdf_list();
     ~FilePDFList();
 private:
     QList<QString> m_pdf_list;

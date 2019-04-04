@@ -9,6 +9,11 @@ FilePDFList::FilePDFList()
     qDebug() << this->m_pdf_list;
 }
 
+QList<QString> &FilePDFList::get_pdf_list()
+{
+    return this->m_pdf_list;
+}
+
 FilePDFList::~FilePDFList()
 {
     
@@ -20,5 +25,8 @@ QList<QString> FilePDFList::get_pdf_list_dir(QString dir_path)
     QStringList filter;
     filter << "*.pdf";
     QList<QString> files = dir.entryList(filter, QDir::Files|QDir::Readable, QDir::Name);
+    for (int loop = 0; loop < files.size(); ++loop) {
+        files[loop] = dir_path + "/" + files[loop];
+    }
     return files;
 }

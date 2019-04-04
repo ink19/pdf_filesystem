@@ -8,6 +8,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QtDebug>
+#include "filepdfconfig.h"
 class FilePDFDir
 {
 public:

@@ -2,14 +2,15 @@
 
 FilePDFDir::FilePDFDir()
 {
-    QFile pfile(this->m_config_path);
-    pfile.open(QIODevice::ReadWrite);
-    auto config_json = QJsonDocument::fromJson(pfile.readAll()).object();
-    auto search_path_arr = config_json["search_path"].toArray();
+//    QFile pfile(this->m_config_path);
+//    pfile.open(QIODevice::ReadWrite);
+//    auto config_json = QJsonDocument::fromJson(pfile.readAll()).object();
+    auto search_path_arr = FilePDFConfig::getValue("search_path").toArray();
     for(auto item : search_path_arr) {
         this->m_search_path.append(item.toString());
+        qDebug() << item.toString();
     }
-    pfile.close();
+    //pfile.close();
 }
 
 FilePDFDir::~FilePDFDir()
