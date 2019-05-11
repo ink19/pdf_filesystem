@@ -9,9 +9,10 @@ FilePDFList::FilePDFList()
     qDebug() << this->m_pdf_list;
 }
 
-QList<QString> FilePDFList::get_pdf_list(QString &dirpath)
+QList<QString> FilePDFList::get_pdf_list(QString dirpath)
 {
-    return get_pdf_list_dir(dirpath);
+    if(dirpath == "default") return m_default_list;
+    else return get_pdf_list_dir(dirpath);
 }
 
 QList<QString> FilePDFList::get_default_list() {
@@ -30,6 +31,8 @@ QList<QString> FilePDFList::get_pdf_list_dir(QString dir_path)
     filter << "*.pdf";
     QList<QString> result;
     QList<QFileInfo> all_files_info = dir.entryInfoList();
+    
+    result.append("default");
     
     for(auto item : all_files_info) {
         if(item.isDir() && item.fileName()[0] != '.') result.append(item.filePath());

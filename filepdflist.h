@@ -11,7 +11,7 @@ class FilePDFList
 {
 public:
     FilePDFList();
-    QList<QString> get_pdf_list(QString &dirpath);
+    QList<QString> get_pdf_list(QString dirpath);
     QList<QString> get_default_list();
     ~FilePDFList();
 private:

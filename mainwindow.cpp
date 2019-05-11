@@ -4,7 +4,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
     
-    auto file_list = this->pdflist.get_default_list();
+    auto file_list = this->pdflist.get_pdf_list(QString("default"));
     for(auto item : file_list) {
         this->ThumbList.push_back(new FilePDFFile(item, 360, 240, this));
     }
@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //m_area_widget->resize(1280, 720);
     
     //this->setCentralWidget(m_scroll_area);
-    this->menuCreator();
+    //this->menuCreator();
     this->draw();
     m_area_widget->setLayout(this->_layout);
     
