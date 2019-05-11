@@ -8,9 +8,15 @@
 #include "filepdfthumbitem.h"
 #include <QGridLayout>
 #include <QScrollArea>
+#include <QMenuBar>
+#include <QMenu>
+#include <QAction>
+#include "filepdffile.h"
+
 namespace Ui {
 class MainWindow;
 }
+class FilePDFFile;
 
 class MainWindow : public QMainWindow
 {
@@ -19,15 +25,21 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    
+    void intoDir(QString dirpath);
 private:
     int draw();
     void resizeEvent(QResizeEvent *event);
+    void menuCreator();
+    void clearAllItem();
+    void initList(QString dirpath);
+    
     FilePDFList pdflist;
-    QList<FilePDFThumbItem *> ThumbList;
+    QList<FilePDFFile *> ThumbList;
     QGridLayout *_layout;
     QScrollArea *m_scroll_area;
     QWidget *m_area_widget;
+private slots:
+    void on_clear_click();
 };
 
 #endif // MAINWINDOW_H

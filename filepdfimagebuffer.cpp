@@ -22,6 +22,20 @@ QString FilePDFImageBuffer::get_image_path(QString &filepath)
     }
 }
 
+QString FilePDFImageBuffer::get_image_path(QString &filepath, int isPDF)
+{
+    if(!isPDF) return this->m_default_path;
+    QString cache_md5 = this->get_file_md5(filepath);
+    cache_md5 = this->m_cache_path + "/" + cache_md5 + ".jpg";
+    QFileInfo cache_info(cache_md5);
+    if(cache_info.exists()) {
+        return cache_md5;
+    } else {
+        this->make_image_cache(filepath, cache_md5);
+        return cache_md5;
+    }
+}
+
 FilePDFImageBuffer::~FilePDFImageBuffer()
 {
     

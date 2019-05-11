@@ -33,7 +33,8 @@ SOURCES += \
     filepdflist.cpp \
     filepdfimagebuffer.cpp \
     filepdfthumbitem.cpp \
-    filepdfconfig.cpp
+    filepdfconfig.cpp \
+    filepdffile.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +42,8 @@ HEADERS += \
     filepdflist.h \
     filepdfimagebuffer.h \
     filepdfthumbitem.h \
-    filepdfconfig.h
+    filepdfconfig.h \
+    filepdffile.h
 
 FORMS +=
 
