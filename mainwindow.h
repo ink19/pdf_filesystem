@@ -26,6 +26,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void intoDir(QString dirpath);
+    QString m_now_path = "default";
 private:
     int draw();
     void resizeEvent(QResizeEvent *event);
@@ -38,6 +39,7 @@ private:
     QGridLayout *_layout;
     QScrollArea *m_scroll_area;
     QWidget *m_area_widget;
+    
 private slots:
     void on_clear_click();
 };

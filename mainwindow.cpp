@@ -57,6 +57,8 @@ void MainWindow::clearAllItem()
 
 void MainWindow::initList(QString dirpath)
 {
+    this->m_now_path = dirpath;
+    qDebug() << "now path: " << dirpath;
     auto file_list = this->pdflist.get_pdf_list(dirpath);
     for(auto item : file_list) {
         this->ThumbList.push_back(new FilePDFFile(item, 360, 240, this));
@@ -86,18 +88,24 @@ void MainWindow::on_clear_click()
 int MainWindow::draw()
 {
     
-    int length = this->size().width() / 240;
+    int length = this->size().width() / 300;
     
-    int loop_i = 0, loop_j = 0;
+    int loop_i = 0, loop_j = 0, min_width = 0;
     
     for(auto item : this->ThumbList) {
+        if(loop_i == 0) ++loop_j;
         item->resize(240, 360);
-        this->_layout->addWidget(item, loop_j, loop_i);
+        this->_layout->addWidget(item, loop_j - 1, loop_i);
         loop_i++;
         loop_i %= length;
-        if(loop_i == 0) ++loop_j;
     }
     
-    m_area_widget->resize(this->size().width(), 360 * (loop_j + 1));
+    if(loop_j == 0) {
+        min_width = loop_i * 300;
+    } else {
+        min_width = length * 300;
+    }
+    qDebug() << min_width;
+    m_area_widget->resize(min_width, 360 * (loop_j));
     return 0;
 }

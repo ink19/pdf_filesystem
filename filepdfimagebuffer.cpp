@@ -24,7 +24,7 @@ QString FilePDFImageBuffer::get_image_path(QString &filepath)
 
 QString FilePDFImageBuffer::get_image_path(QString &filepath, int isPDF)
 {
-    if(!isPDF) return this->m_default_path;
+    if(!isPDF) return this->m_dir_image;
     QString cache_md5 = this->get_file_md5(filepath);
     cache_md5 = this->m_cache_path + "/" + cache_md5 + ".jpg";
     QFileInfo cache_info(cache_md5);

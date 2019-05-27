@@ -25,8 +25,8 @@ private:
     QString get_file_md5(QString &filepath);
     int make_image_cache(QString &filepath, QString &cache_path);
     QString m_cache_path;
-    QString m_default_path = "/home/ink19/c++_qt/pdf_config/dir.png";
-    QString m_dir_image = "/home/ink19/c++_qt/pdf_config/dir.png";
+    QString m_default_path = "/home/ink19/c++_qt/pdf_filesystem/pdf_config/pdf.png";
+    QString m_dir_image = "/home/ink19/c++_qt/pdf_filesystem/pdf_config/dir.png";
 };
 
 #endif // FILEPDFIMAGEBUFFER_H

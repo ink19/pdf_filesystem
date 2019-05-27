@@ -3,6 +3,7 @@
 FilePDFList::FilePDFList()
 { 
     auto search_path_arr = FilePDFConfig::getValue("search_path").toArray();
+    this->m_default_list.append("add_collection");
     for(auto item : search_path_arr) {
         this->m_default_list.append(item.toString());
     }
@@ -11,8 +12,15 @@ FilePDFList::FilePDFList()
 
 QList<QString> FilePDFList::get_pdf_list(QString dirpath)
 {
-    if(dirpath == "default") return m_default_list;
-    else return get_pdf_list_dir(dirpath);
+    if(dirpath == "default") {
+        this->m_default_list.clear();
+        auto search_path_arr = FilePDFConfig::getValue("search_path").toArray();
+        this->m_default_list.append("add_collection");
+        for(auto item : search_path_arr) {
+            this->m_default_list.append(item.toString());
+        }
+        return m_default_list;
+    } else return get_pdf_list_dir(dirpath);
 }
 
 QList<QString> FilePDFList::get_default_list() {

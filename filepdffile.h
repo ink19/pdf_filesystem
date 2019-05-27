@@ -7,11 +7,18 @@
 #include "filepdfimagebuffer.h"
 #include <QVBoxLayout>
 #include <mainwindow.h>
+#include <QFileDialog>
+#include <QDir>
+#include "filepdfconfig.h"
+#include <QContextMenuEvent>
+#include <QMenu>
+#include <QAction>
 
 class MainWindow;
 
 class FilePDFFile : public QWidget
 {
+Q_OBJECT
 public:
     FilePDFFile(QString filepath, int height, int width, MainWindow *mainw);
     ~FilePDFFile();
@@ -24,8 +31,11 @@ public:
     MainWindow *mainw;
 public slots:
     void mouseClicked();
+    void delete_slots();
+    void open_slots();
 protected:
     void mousePressEvent(QMouseEvent* event);
+    void contextMenuEvent(QContextMenuEvent *event);
 };
 
 #endif // FILEPDFFILE_H
