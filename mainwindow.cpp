@@ -11,8 +11,12 @@ MainWindow::MainWindow(QWidget *parent) :
     
     this->resize(1280, 720);
     
+    this->mainWidget = new QWidget(this);
+    
+    this->mainWidget->resize(1280, 720);
+    
     this->_layout = new QGridLayout;
-    m_scroll_area = new QScrollArea(this);
+    m_scroll_area = new QScrollArea(this->mainWidget);
     
     
     //this->centralWidget()->resize(1280, 720);

@@ -27,6 +27,7 @@ public:
     ~MainWindow();
     void intoDir(QString dirpath);
     QString m_now_path = "default";
+    QWidget *mainWidget;
 private:
     int draw();
     void resizeEvent(QResizeEvent *event);
