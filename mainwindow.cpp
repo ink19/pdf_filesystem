@@ -39,6 +39,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
     this->m_scroll_area->resize(this->size());
+    this->mainWidget->resize(this->size());
+    this->intoDir(this->m_now_path);
 }
 
 void MainWindow::menuCreator()

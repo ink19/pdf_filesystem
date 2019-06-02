@@ -4,6 +4,8 @@ FilePDFFile::FilePDFFile(QString filepath, int height, int width, MainWindow *ma
     m_filepath(filepath),
     mainw(mainw)
 {
+    QFont ft;
+    ft.setPointSize(20);
     if(filepath == "default") {
         this->m_filename = "返回顶层";
         FilePDFImageBuffer filebu;
@@ -14,11 +16,13 @@ FilePDFFile::FilePDFFile(QString filepath, int height, int width, MainWindow *ma
         this->m_title = new QLabel;
         
         
-        if(this->m_filename.size() > 15) {
-            this->m_title->setText(this->m_filename.mid(0, 15));
+        if(this->m_filename.size() > 7) {
+            this->m_title->setText(this->m_filename.mid(0, 7));
         } else {
             this->m_title->setText(this->m_filename);
         }
+        this->m_title->setFont(ft);
+        this->m_title->setAlignment(Qt::AlignHCenter);
         auto _layout = new QVBoxLayout(this);
         _layout->addWidget(this->m_image);
         _layout->addWidget(this->m_title);
@@ -35,6 +39,8 @@ FilePDFFile::FilePDFFile(QString filepath, int height, int width, MainWindow *ma
         
         
         this->m_title->setText(this->m_filename);
+        this->m_title->setFont(ft);
+        this->m_title->setAlignment(Qt::AlignHCenter);
         auto _layout = new QVBoxLayout(this);
         _layout->addWidget(this->m_image);
         _layout->addWidget(this->m_title);
@@ -51,11 +57,13 @@ FilePDFFile::FilePDFFile(QString filepath, int height, int width, MainWindow *ma
     this->m_title = new QLabel;
     
     
-    if(this->m_filename.size() > 15) {
-        this->m_title->setText(this->m_filename.mid(0, 15));
+    if(this->m_filename.size() > 7) {
+        this->m_title->setText(this->m_filename.mid(0, 7));
     } else {
         this->m_title->setText(this->m_filename);
     }
+    this->m_title->setFont(ft);
+    this->m_title->setAlignment(Qt::AlignHCenter);
     auto _layout = new QVBoxLayout(this);
     _layout->addWidget(this->m_image);
     _layout->addWidget(this->m_title);
