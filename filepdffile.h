@@ -31,11 +31,9 @@ public:
     MainWindow *mainw;
 public slots:
     void mouseClicked();
-    void delete_slots();
-    void open_slots();
 protected:
     void mousePressEvent(QMouseEvent* event);
-    void contextMenuEvent(QContextMenuEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 };
 
 #endif // FILEPDFFILE_H

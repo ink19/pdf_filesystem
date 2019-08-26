@@ -1,9 +1,6 @@
 {
     "image_cache_dir": "/home/ink19/pdf_image/cache/",
     "search_path": [
-        "/home/ink19/C++",
-        "/home/ink19/宿舍",
-        "/home/ink19/Downloads",
         "/home/ink19/Documents",
         "/home/ink19/Documents"
     ]

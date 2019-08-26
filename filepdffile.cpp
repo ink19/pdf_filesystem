@@ -5,7 +5,9 @@ FilePDFFile::FilePDFFile(QString filepath, int height, int width, MainWindow *ma
     mainw(mainw)
 {
     QFont ft;
-    ft.setPointSize(20);
+    ft.setPointSize(10);
+    this->setMouseTracking(true);
+    
     if(filepath == "default") {
         this->m_filename = "返回顶层";
         FilePDFImageBuffer filebu;
@@ -16,13 +18,14 @@ FilePDFFile::FilePDFFile(QString filepath, int height, int width, MainWindow *ma
         this->m_title = new QLabel;
         
         
-        if(this->m_filename.size() > 7) {
-            this->m_title->setText(this->m_filename.mid(0, 7));
+        if(this->m_filename.size() > 20) {
+            this->m_title->setText(this->m_filename.mid(0, 20));
         } else {
+            
             this->m_title->setText(this->m_filename);
         }
         this->m_title->setFont(ft);
-        this->m_title->setAlignment(Qt::AlignHCenter);
+        //this->m_title->setAlignment(Qt::AlignHCenter);
         auto _layout = new QVBoxLayout(this);
         _layout->addWidget(this->m_image);
         _layout->addWidget(this->m_title);
@@ -40,7 +43,7 @@ FilePDFFile::FilePDFFile(QString filepath, int height, int width, MainWindow *ma
         
         this->m_title->setText(this->m_filename);
         this->m_title->setFont(ft);
-        this->m_title->setAlignment(Qt::AlignHCenter);
+        //this->m_title->setAlignment(Qt::AlignHCenter);
         auto _layout = new QVBoxLayout(this);
         _layout->addWidget(this->m_image);
         _layout->addWidget(this->m_title);
@@ -57,13 +60,13 @@ FilePDFFile::FilePDFFile(QString filepath, int height, int width, MainWindow *ma
     this->m_title = new QLabel;
     
     
-    if(this->m_filename.size() > 7) {
-        this->m_title->setText(this->m_filename.mid(0, 7));
+    if(this->m_filename.size() > 20) {
+        this->m_title->setText(this->m_filename.mid(0, 20));
     } else {
         this->m_title->setText(this->m_filename);
     }
     this->m_title->setFont(ft);
-    this->m_title->setAlignment(Qt::AlignHCenter);
+    //this->m_title->setAlignment(Qt::AlignHCenter);
     auto _layout = new QVBoxLayout(this);
     _layout->addWidget(this->m_image);
     _layout->addWidget(this->m_title);
@@ -91,67 +94,41 @@ void FilePDFFile::mouseClicked()
     }
 }
 
-void FilePDFFile::delete_slots()
-{
-    qDebug() << "delete mouse";
-    FilePDFConfig::remove_collection(this->m_filepath);
-    this->mainw->intoDir("default");
-}
+//void FilePDFFile::delete_slots()
+//{
+//    qDebug() << "delete mouse";
+//    FilePDFConfig::remove_collection(this->m_filepath);
+//    this->mainw->intoDir("default");
+//}
 
-void FilePDFFile::open_slots()
-{
-    emit mouseClicked();
-}
+//void FilePDFFile::open_slots()
+//{
+//    emit mouseClicked();
+//}
 
 void FilePDFFile::mousePressEvent(QMouseEvent *event)
 {
     qDebug() << "mouse press";
     if(event->button() == Qt::LeftButton) emit mouseClicked();
+    else if(event->button() == Qt::RightButton) {
+        this->mainw->m_contextMenu_Op = this;
+        this->mainw->m_contextMenu->exec(event->globalPos());
+    }
 }
 
-void FilePDFFile::contextMenuEvent(QContextMenuEvent *event)
+void FilePDFFile::mouseMoveEvent(QMouseEvent *event)
 {
-    if(this->mainw->m_now_path == "default") {
-        // 主菜单
-        QMenu *MainMenu = new QMenu(this);
-        //主菜单的 子项
-        QAction *open_button = new QAction(MainMenu);
-        open_button->setText("打开");
-        
-        connect(open_button, SIGNAL(triggered()), this, SLOT(open_slots()));
-        
-        QAction *delete_button = new QAction(MainMenu);
-        delete_button->setText("删除");
-        
-        connect(delete_button, SIGNAL(triggered()), this, SLOT(delete_slots()));
-        
-        QList<QAction*> actionList;
-        actionList<< open_button\
-                 << delete_button;
-        //添加子项到主菜单
-        MainMenu->addActions(actionList);
-        
-        
-        
-        // 移动到当前鼠标所在位置
-        MainMenu->exec(QCursor::pos());
-    } else {
-        // 主菜单
-        QMenu *MainMenu = new QMenu(this);
-        //主菜单的 子项
-        QAction *open_button = new QAction(MainMenu);
-        open_button->setText("打开");
-        
-        connect(open_button, SIGNAL(triggered()), this, SLOT(open_slots()));        
-        
-        QList<QAction*> actionList;
-        actionList<< open_button;
-        //添加子项到主菜单
-        MainMenu->addActions(actionList);
-        
-        
-        
-        // 移动到当前鼠标所在位置
-        MainMenu->exec(QCursor::pos());
+    QPoint mousepos = event->pos(); 
+    //在坐标（0 ~ width，0 ~ height）范围内改变鼠标形状
+    if(mousepos.rx() > 0 
+       && mousepos.rx() < this->width()
+       && mousepos.ry() > 0
+       && mousepos.ry() < this->height())
+    {
+           this->setCursor(Qt::PointingHandCursor);
+    }
+    else
+    {
+        this->setCursor(Qt::ArrowCursor);      //范围之外变回原来形状
     }
 }

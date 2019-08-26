@@ -5,7 +5,6 @@
 #include "filepdflist.h"
 #include "filepdfimagebuffer.h"
 #include <QList>
-#include "filepdfthumbitem.h"
 #include <QGridLayout>
 #include <QScrollArea>
 #include <QMenuBar>
@@ -28,6 +27,8 @@ public:
     void intoDir(QString dirpath);
     QString m_now_path = "default";
     QWidget *mainWidget;
+    QMenu *m_contextMenu;
+    FilePDFFile *m_contextMenu_Op;
 private:
     int draw();
     void resizeEvent(QResizeEvent *event);
@@ -43,6 +44,8 @@ private:
     
 private slots:
     void on_clear_click();
+    void delete_slots();
+    void open_slots();
 };
 
 #endif // MAINWINDOW_H

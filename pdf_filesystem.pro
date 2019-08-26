@@ -32,7 +32,6 @@ SOURCES += \
     filepdfdir.cpp \
     filepdflist.cpp \
     filepdfimagebuffer.cpp \
-    filepdfthumbitem.cpp \
     filepdfconfig.cpp \
     filepdffile.cpp
 
@@ -41,7 +40,6 @@ HEADERS += \
     filepdfdir.h \
     filepdflist.h \
     filepdfimagebuffer.h \
-    filepdfthumbitem.h \
     filepdfconfig.h \
     filepdffile.h
 
