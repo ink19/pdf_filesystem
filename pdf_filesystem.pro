@@ -33,7 +33,8 @@ SOURCES += \
     filepdflist.cpp \
     filepdfimagebuffer.cpp \
     filepdfconfig.cpp \
-    filepdffile.cpp
+    filepdffile.cpp \
+    qreadmain.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +42,8 @@ HEADERS += \
     filepdflist.h \
     filepdfimagebuffer.h \
     filepdfconfig.h \
-    filepdffile.h
+    filepdffile.h \
+    qreadmain.h
 
 FORMS +=
 

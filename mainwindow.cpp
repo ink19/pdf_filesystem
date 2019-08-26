@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent)
+    QWidget(parent)
 {
     
     auto file_list = this->pdflist.get_pdf_list(QString("default"));
@@ -47,7 +47,7 @@ void MainWindow::menuCreator()
 {
     QMenu *test_menu = new QMenu("Test");
     QAction *actions = test_menu->addAction("Clear");
-    this->menuBar()->addMenu(test_menu);
+    //this->menuBar()->addMenu(test_menu);
     connect(actions, SIGNAL(triggered()), this, SLOT(on_clear_click()));
 }
 

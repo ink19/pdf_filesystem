@@ -12,12 +12,9 @@
 #include <QAction>
 #include "filepdffile.h"
 
-namespace Ui {
-class MainWindow;
-}
 class FilePDFFile;
 
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
     
