@@ -34,27 +34,30 @@ int FileList::draw()
 {
     int more_width = this->parentWidget()->size().width() > this->size().width()?this->parentWidget()->size().width():this->size().width();
     int length = more_width / 260;
-    if(more_width - length * 260 > 150) length++;
     
     if (length < 1) length = 1;
+    if(more_width - length * 260 > 150) length++;
     int loop_i = 0, loop_j = 0, min_width;
     for (auto item : this->m_pdf_list) {
-        if(loop_i == 0) ++loop_j;
         item->resize(240, 360);
         
-        this->m_layout->addWidget(item, loop_j - 1, loop_i);
+        this->m_layout->addWidget(item, loop_j, loop_i);
         item->setVisible(true);
         loop_i ++;
         loop_i %= length;
+        if(loop_i == 0) ++loop_j;
     }
     
-    if (loop_j == 1) {
+    loop_i = this->m_pdf_list.size() % length;
+    loop_j = this->m_pdf_list.size() / length;
+    if(loop_i != 0) loop_j++;
+    qDebug() << length << loop_i << loop_j << this->m_pdf_list.size();
+    if (loop_j == 1 && loop_i != 0) {
         min_width = loop_i * 260;
     } else {
         min_width = length * 260;
     }
-    
-    this->resize(min_width, 380 * loop_j);
+    this->resize(min_width, 350 * loop_j);
     this->update();
     this->m_layout->update();
     return 0;

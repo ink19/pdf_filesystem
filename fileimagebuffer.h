@@ -28,6 +28,7 @@ private:
     QString m_default_path = ":/pdf.png";
     QString m_dir_image = ":/dir.png";
     QString m_return_image = ":/return.png";
+    QString m_add_collection_image = ":/add_collection.png";
 };
 
 #endif // FILEIMAGEBUFFER_H

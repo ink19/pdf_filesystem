@@ -30,10 +30,12 @@ QString FileImageBuffer::get_image_path(QString &filepath)
 QString FileImageBuffer::get_image_path(QString &filepath, int isPDF)
 {
     if(!isPDF) {
-        if(filepath != "default") {
-            return this->m_dir_image;
-        } else {
+        if(filepath == "default") {
             return this->m_return_image;
+        } else if(filepath == "add_collection") {
+            return this->m_add_collection_image;
+        } else {
+            return this->m_dir_image;
         }
     }
     QString cache_md5 = this->get_file_md5(filepath);
