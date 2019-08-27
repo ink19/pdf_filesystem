@@ -6,7 +6,7 @@ FileList::FileList(QWidget *parent) : QWidget(parent)
     this->m_layout = new QGridLayout(this);
     //this->m_pdf_list = new QList<FileThumLabel>;
     this->setLayout(m_layout);
-    this->m_layout->setMargin(50);
+    this->m_layout->setMargin(10);
     this->into_dir("default");
 }
 
@@ -32,7 +32,10 @@ int FileList::into_dir(QString path)
 
 int FileList::draw()
 {
-    int length = (this->parentWidget()->size().width() > this->size().width()?this->parentWidget()->size().width():this->size().width()) / 360;
+    int more_width = this->parentWidget()->size().width() > this->size().width()?this->parentWidget()->size().width():this->size().width();
+    int length = more_width / 260;
+    if(more_width - length * 260 > 150) length++;
+    
     if (length < 1) length = 1;
     int loop_i = 0, loop_j = 0, min_width;
     for (auto item : this->m_pdf_list) {
@@ -46,12 +49,12 @@ int FileList::draw()
     }
     
     if (loop_j == 1) {
-        min_width = loop_i * 360;
+        min_width = loop_i * 260;
     } else {
-        min_width = length * 360;
+        min_width = length * 260;
     }
     
-    this->resize(min_width, 460 * loop_j);
+    this->resize(min_width, 380 * loop_j);
     this->update();
     this->m_layout->update();
     return 0;
