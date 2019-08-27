@@ -1,8 +1,7 @@
 {
     "image_cache_dir": "./cache/",
     "search_path": [
-        "/home/ink19/Documents",
-        "/home/ink19/HTML",
-        "/home/ink19/Pictures"
+        "~/Documents",
+        "~/Pictures"
     ]
 }
