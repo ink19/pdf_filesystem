@@ -2,8 +2,19 @@
 
 FileConfigure::FileConfigure()
 {
+    
+    QFileInfo dirfile(this->m_config_path);
+    
+    if(dirfile.exists() == false) {
+        qDebug() << "make dir:" << this->m_config_path;
+        QDir().mkdir(dirfile.dir().absolutePath());
+        QFile::copy(":/config.json", this->m_config_path);
+        QFile().setPermissions(this->m_config_path, QFileDevice::ReadOwner|QFileDevice::WriteOwner|QFileDevice::ExeOwner);
+    }
+    
     QFile pfile(this->m_config_path);
     pfile.open(QIODevice::ReadWrite);
+    
     this->m_config = QJsonDocument::fromJson(pfile.readAll()).object();
     pfile.close();
 }

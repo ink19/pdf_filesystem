@@ -12,6 +12,7 @@
 #include <QImage>
 #include <QFileInfo>
 #include "fileconfigure.h"
+#include <QDir>
 
 class FileImageBuffer
 {

@@ -6,7 +6,12 @@ FileImageBuffer::FileImageBuffer()
     //pfile.open(QIODevice::ReadWrite);
     //auto config_json = QJsonDocument::fromJson(pfile.readAll()).object();
     this->m_cache_path = FileConfigure::getValue("image_cache_dir").toString();
-    qDebug() << this->m_cache_path;
+    QFileInfo cachePath(this->m_cache_path);
+    if(cachePath.exists() == false) {
+        qDebug() << "make dir:" << this->m_cache_path;
+        QDir().mkpath(this->m_cache_path);
+    }
+    
 }
 
 QString FileImageBuffer::get_image_path(QString &filepath)
