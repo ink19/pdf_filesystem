@@ -3,5 +3,6 @@
         <file>pdf.png</file>
         <file>dir.png</file>
         <file>config.json</file>
+        <file>return.png</file>
     </qresource>
 </RCC>

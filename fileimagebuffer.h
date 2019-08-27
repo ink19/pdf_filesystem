@@ -27,6 +27,7 @@ private:
     QString m_cache_path;
     QString m_default_path = ":/pdf.png";
     QString m_dir_image = ":/dir.png";
+    QString m_return_image = ":/return.png";
 };
 
 #endif // FILEIMAGEBUFFER_H
