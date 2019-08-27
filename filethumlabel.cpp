@@ -23,7 +23,7 @@ FileThumLabel::FileThumLabel(QString filepath, int height, int width, QWidget *p
     this->m_image_cache_path = filebuff.get_image_path(this->m_filepath, this->isPDF);
     this->m_image = new QLabel;
     qDebug() << this->m_image_cache_path;
-    this->m_image->setPixmap(QPixmap(this->m_image_cache_path).scaled(width, height));
+    this->m_image->setPixmap(QPixmap(this->m_image_cache_path).scaled(width, width * 1.414));
     this->m_title = new QLabel;
     
     if(this->m_filename.size() > 20) {
@@ -35,6 +35,11 @@ FileThumLabel::FileThumLabel(QString filepath, int height, int width, QWidget *p
     auto _layout = new QVBoxLayout(this);
     _layout->addWidget(this->m_image);
     _layout->addWidget(this->m_title);
+    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(this->m_image);
+    shadow->setOffset(0, 0);
+    shadow->setColor(QColor("#555555"));
+    shadow->setBlurRadius(20);
+    this->m_image->setGraphicsEffect(shadow);
 }
 
 void FileThumLabel::mouseMoveEvent(QMouseEvent *event)

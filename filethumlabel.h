@@ -10,6 +10,7 @@
 #include "fileconfigure.h"
 #include "fileimagebuffer.h"
 #include <QMouseEvent>
+#include <QGraphicsDropShadowEffect>
 
 class FileThumLabel : public QWidget
 {
