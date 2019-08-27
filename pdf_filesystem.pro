@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-03-12T19:07:06
+# Project created by QtCreator 2019-08-27T13:53:57
 #
 #-------------------------------------------------
 
@@ -22,35 +22,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-LIBS += -L/usr/local/lib/ -lpoppler-qt5
-
-CONFIG += c++11
 
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    filepdfdir.cpp \
-    filepdflist.cpp \
-    filepdfimagebuffer.cpp \
-    filepdfconfig.cpp \
-    filepdffile.cpp \
-    qreadmain.cpp
+    filewindow.cpp
 
 HEADERS += \
         mainwindow.h \
-    filepdfdir.h \
-    filepdflist.h \
-    filepdfimagebuffer.h \
-    filepdfconfig.h \
-    filepdffile.h \
-    qreadmain.h
+    filewindow.h
 
 FORMS +=
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
-
-DISTFILES += \
-    README.md
+RESOURCES += \
+    filesys.qrc
