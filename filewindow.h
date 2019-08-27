@@ -2,15 +2,27 @@
 #define FILEWINDOW_H
 
 #include <QWidget>
+#include <QMenu>
+#include <QAction>
+#include <QGridLayout>
+#include <QScrollArea>
+#include <QList>
+#include "filelist.h"
 
 class FileWindow : public QWidget
 {
     Q_OBJECT
 public:
     explicit FileWindow(QWidget *parent = nullptr);
-    int mresize(const QSize &size);
+    int mresize(QSize size);
+
+private:
+    //QMenu *m_contextMenu;
+    //QWidget *FileListWidget;
+    QScrollArea *m_scorll = nullptr;
+    FileList *m_file_list = nullptr;
 signals:
-    
+    void changeSizeSignal(QSize size);
 public slots:
 };
 

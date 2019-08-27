@@ -10,6 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = pdf_filesystem
 TEMPLATE = app
+LIBS += -L/usr/local/lib/ -lpoppler-qt5
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -26,11 +27,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    filewindow.cpp
+    filewindow.cpp \
+    fileconfigure.cpp \
+    fileimagebuffer.cpp \
+    filethumlabel.cpp \
+    filelist.cpp
 
 HEADERS += \
         mainwindow.h \
-    filewindow.h
+    filewindow.h \
+    fileconfigure.h \
+    fileimagebuffer.h \
+    filethumlabel.h \
+    filelist.h
 
 FORMS +=
 

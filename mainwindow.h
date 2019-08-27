@@ -15,10 +15,11 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    FileWindow* m_FileWindow;
+    FileWindow* m_FileWindow = nullptr;
     
 private:
     Ui::MainWindow *ui;
+    void resizeEvent(QResizeEvent *event);
 };
 
 #endif // MAINWINDOW_H
