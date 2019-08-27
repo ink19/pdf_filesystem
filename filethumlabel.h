@@ -26,7 +26,8 @@ private:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
 signals:
-    void click_right(FileThumLabel *);
+    void click_right(FileThumLabel *, QPoint);
+    void click_left(FileThumLabel *);
 public slots:
 };
 

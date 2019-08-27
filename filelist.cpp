@@ -22,7 +22,8 @@ int FileList::into_dir(QString path)
     for (auto item : file_paths) {
         auto thum_item = new FileThumLabel(item, 360, 240, this);
         this->m_pdf_list.append(thum_item);
-        connect(thum_item, SIGNAL(click_right(FileThumLabel *)), this, SLOT(clickThum(FileThumLabel*)));
+        connect(thum_item, SIGNAL(click_left(FileThumLabel *)), this, SLOT(clickThum(FileThumLabel*)));
+        connect(thum_item, SIGNAL(click_right(FileThumLabel*, QPoint)), this, SLOT(contextClickThum(FileThumLabel*, QPoint)));
     }
     this->draw();
     return 0;
@@ -119,4 +120,38 @@ void FileList::clickThum(FileThumLabel *item)
         }
     }
 }
+
+void FileList::contextClickThum(FileThumLabel *item, QPoint pos)
+{
+    this->OperaItem = item;
+    if (this->m_context_menu != nullptr) {
+        for (auto item : this->m_context_menu->actions()) {
+            disconnect(item, 0, 0, 0);
+        }
+    }
+    
+    if(this->m_context_menu != nullptr) delete this->m_context_menu;
+    this->m_context_menu = new QMenu;
+    auto open_action = new QAction("打开", this);
+    this->m_context_menu->addAction(open_action);
+    connect(open_action, SIGNAL(triggered()), this, SLOT(contextOpen()));
+    if(this->m_now_path == "default" && item->m_filepath != "add_collection") {
+        auto delete_action = new QAction("删除", this);
+        this->m_context_menu->addAction(delete_action);
+        connect(delete_action, SIGNAL(triggered()), this, SLOT(contextDel()));
+    } 
+    this->m_context_menu->exec(pos);
+}
+
+void FileList::contextOpen()
+{
+    this->clickThum(this->OperaItem);
+}
+
+void FileList::contextDel()
+{
+    FileConfigure::remove_collection(this->OperaItem->m_filepath);
+    this->into_dir("default");
+}
+
 

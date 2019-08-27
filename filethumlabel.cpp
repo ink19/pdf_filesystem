@@ -54,5 +54,6 @@ void FileThumLabel::mouseMoveEvent(QMouseEvent *event)
 
 void FileThumLabel::mousePressEvent(QMouseEvent *event)
 {
-    emit click_right(this);
+    if(event->button() == Qt::LeftButton) emit click_left(this);
+    else emit click_right(this, event->globalPos());
 }

@@ -10,6 +10,9 @@
 #include <QFileInfo>
 #include "fileconfigure.h"
 #include <QFileDialog>
+#include <QMenu>
+#include <QAction>
+
 class FileList : public QWidget
 {
     Q_OBJECT
@@ -20,7 +23,9 @@ public:
     int into_dir(QString path);
     int draw();
     int redraw();
+    QMenu *m_context_menu = nullptr;
     QString m_now_path = "default";
+    FileThumLabel *OperaItem;
 private:
     QList<QString> get_file_list(QString path);
     int add_collection();
@@ -29,6 +34,9 @@ signals:
 public slots:
     void sizeChange(QSize size);
     void clickThum(FileThumLabel *item);
+    void contextClickThum(FileThumLabel *item, QPoint pos);
+    void contextOpen();
+    void contextDel();
 };
 
 #endif // FILELIST_H
