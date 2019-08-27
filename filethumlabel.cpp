@@ -23,15 +23,16 @@ FileThumLabel::FileThumLabel(QString filepath, int height, int width, QWidget *p
     this->m_image_cache_path = filebuff.get_image_path(this->m_filepath, this->isPDF);
     this->m_image = new QLabel;
     qDebug() << this->m_image_cache_path;
-    this->m_image->setPixmap(QPixmap(this->m_image_cache_path).scaled(width, width * 1.414));
+    this->m_image->setPixmap(QPixmap(this->m_image_cache_path).scaled(width * 0.7, width * 0.7 * 1.414));
     this->m_title = new QLabel;
-    
+    this->m_image->setAlignment(Qt::AlignCenter);
     if(this->m_filename.size() > 20) {
         this->m_title->setText(this->m_filename.mid(0, 20));
     } else {
         this->m_title->setText(this->m_filename);
     }
     this->m_title->setFont(ft);
+    this->m_title->setAlignment(Qt::AlignCenter);
     auto _layout = new QVBoxLayout(this);
     _layout->addWidget(this->m_image);
     _layout->addWidget(this->m_title);
