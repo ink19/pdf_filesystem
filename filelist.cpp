@@ -32,7 +32,7 @@ int FileList::into_dir(QString path)
 
 int FileList::draw()
 {
-    int length = this->parentWidget()->size().width() / 360;
+    int length = (this->parentWidget()->size().width() > this->size().width()?this->parentWidget()->size().width():this->size().width()) / 360;
     if (length < 1) length = 1;
     int loop_i = 0, loop_j = 0, min_width;
     for (auto item : this->m_pdf_list) {
