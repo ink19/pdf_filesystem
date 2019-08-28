@@ -12,6 +12,7 @@
 #include <QFileDialog>
 #include <QMenu>
 #include <QAction>
+#include <QStack>
 
 class FileList : public QWidget
 {
@@ -29,6 +30,7 @@ public:
 private:
     QList<QString> get_file_list(QString path);
     int add_collection();
+    QStack<QString> m_content_stack;
 signals:
     
 public slots:

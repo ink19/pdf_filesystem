@@ -9,7 +9,7 @@ FileThumLabel::FileThumLabel(QString filepath, int height, int width, QWidget *p
     this->setMouseTracking(true);
     
     if(filepath == "default") {
-        this->m_filename = "返回顶层";
+        this->m_filename = "返回上层";
         this->isPDF = 0;
     } else if(filepath == "add_collection") {
         this->m_filename = "添加收藏";

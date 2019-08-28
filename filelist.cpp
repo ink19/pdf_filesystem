@@ -3,6 +3,7 @@
 FileList::FileList(QWidget *parent) : QWidget(parent)
 {
     if(parent != nullptr) this->resize(parent->size());
+    this->m_content_stack.push("default");
     this->m_layout = new QGridLayout(this);
     //this->m_pdf_list = new QList<FileThumLabel>;
     this->setLayout(m_layout);
@@ -12,6 +13,11 @@ FileList::FileList(QWidget *parent) : QWidget(parent)
 
 int FileList::into_dir(QString path)
 {
+    if(path == "default") {
+        path = this->m_content_stack.pop();
+    } else {
+        this->m_content_stack.push(this->m_now_path);
+    }
     this->m_now_path = path;
     for (auto item : this->m_pdf_list) {
         item->disconnect();
